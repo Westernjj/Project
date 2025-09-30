@@ -1,0 +1,16 @@
+# Віртуальне середовище
+venv/
+
+# Кеші Python
+__pycache__/
+*.pyc
+
+# База SQLite
+*.sqlite3
+
+# Логи
+*.log
+
+# Конфіг VSCode / PyCharm (не обов'язково, але бажано)
+.vscode/
+.idea/
