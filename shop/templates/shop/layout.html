@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}My Shop{% endblock %}</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+</head>
+<body>
+  <header>
+    <h1>My Goods</h1>
+    <nav>
+      <a href="{% url 'products' %}">Products</a> |
+      <a href="{% url 'categories' %}">Categories</a>
+    </nav>
+    <hr>
+  </header>
+
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <hr>
+    <p>&copy; My Shop</p>
+  </footer>
+</body>
+</html>

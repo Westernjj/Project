@@ -1,0 +1,41 @@
+{% extends 'shop/layout.html' %}
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    
+    {# Головний контейнер, який ми стилізуємо як двоколонковий макет #}
+    <div class="product-detail-layout">
+        
+        {# Ліва колонка для зображення #}
+        <div class="product-detail-image">
+            {% if object.image %}
+                <img src="{{ object.image.url }}" alt="{{ object.name }}">
+            {% else %}
+                <div class="placeholder-image-large">No Image Available</div>
+            {% endif %}
+        </div>
+        
+        {# Права колонка для інформації про товар #}
+        <div class="product-detail-info">
+            <h2>{{ object.name }}</h2>
+
+            <p class="product-price">{{ object.price }} грн</p>
+            
+            <p class="product-category">
+                Category: <a href="{{ object.category.get_absolute_url }}">{{ object.category.name }}</a>
+            </p>
+
+            <div class="product-description">
+                <p>{{ object.description|linebreaks }}</p>
+            </div>
+
+            <div class="product-actions-detail">
+                <a href="{% url 'product_update' slug=object.slug %}" class="btn btn-edit">Edit</a>
+                <a href="{% url 'product_delete' slug=object.slug %}" class="btn btn-delete">Delete</a>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'products' %}" class="back-link">← Back to all products</a>
+
+{% endblock %}

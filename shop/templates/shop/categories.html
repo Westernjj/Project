@@ -1,0 +1,12 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<h2>Список категорій</h2>
+<ul>
+    {% for category in categories %}
+        <li><strong>{{ category.name }}</strong> — {{ category.description }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

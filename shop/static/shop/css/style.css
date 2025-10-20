@@ -1,0 +1,420 @@
+/* =================================================================== */
+/* === ЗАГАЛЬНІ СТИЛІ === */
+/* =================================================================== */
+
+body {
+    background-color: #f4f5f7; /* Трохи світліший фон */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+a {
+    color: #631ab8; /* Ваш фірмовий колір для посилань */
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #4a148c;
+}
+
+h2 {
+    font-size: 2em;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+}
+
+/* =================================================================== */
+/* === HEADER (Шапка сайту) === */
+/* =================================================================== */
+
+header {
+    background-color: #631ab8;
+    color: white;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+}
+
+header h1 a,
+header nav a {
+    color: white;
+    text-decoration: none;
+}
+
+header nav a {
+    margin: 0 10px;
+    font-size: 1.1em;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+header nav a:hover {
+    border-bottom-color: white;
+}
+
+/* =================================================================== */
+/* === СІТКА ПРОДУКТІВ === */
+/* =================================================================== */
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    justify-content: center;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    overflow: hidden; /* Важливо для зображення */
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.product-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-grow: 1; /* Дозволяє цьому блоку розтягуватися */
+}
+
+.product-card h3 {
+    margin-top: 0;
+    font-size: 1.3em;
+}
+
+.product-card h3 a {
+    color: #333;
+}
+
+.product-price {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #28a745;
+    margin: 15px 0;
+}
+
+.product-actions {
+    margin-top: 15px;
+}
+
+/* Зображення в картці */
+/* Зображення в картці */
+.product-image-container {
+    height: 220px; /* Фіксована висота */
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Дуже важливо: обрізає все, що виходить за межі */
+}
+
+.product-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ключова властивість: заповнює контейнер, зберігаючи пропорції */
+    transition: transform 0.3s ease;
+}
+
+/* Ефект при наведенні */
+.product-card:hover .product-card-image {
+    transform: scale(1.05);
+}
+
+.placeholder-image {
+    font-size: 1.2em;
+    color: #aaa;
+}
+/* =================================================================== */
+/* === СТОРІНКА ДЕТАЛЕЙ ТОВАРУ === */
+/* =================================================================== */
+
+.product-detail-layout {
+    display: flex;
+    flex-wrap: wrap; /* Для мобільних пристроїв */
+    gap: 40px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Ліва колонка (зображення) */
+.product-detail-image {
+    flex: 1;
+    max-width: 400px;
+    height: 400px; /* <-- 1. Встановлюємо фіксовану висоту контейнера */
+    background-color: #f0f0f0; /* Фон для випадків, якщо картинка не завантажиться */
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-detail-image img {
+    width: 100%;
+    height: 100%; /* <-- 2. Змушуємо зображення заповнити контейнер */
+    object-fit: cover; /* <-- 3. Найважливіша властивість! Зберігає пропорції, обрізаючи зайве */
+    border-radius: 8px;
+}
+
+.placeholder-image-large {
+    width: 100%;
+    height: 400px;
+    background-color: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: #aaa;
+    border-radius: 8px;
+}
+
+.product-detail-info {
+    flex: 1.5;
+    min-width: 300px;
+}
+
+.product-detail-info h2 {
+    margin-top: 0;
+    font-size: 2.5em;
+    border: none;
+}
+
+.product-detail-info .product-price {
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+.product-detail-info .product-category {
+    font-size: 1.1em;
+    background-color: #f2f2f2;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.product-actions-detail {
+    margin-top: 30px;
+}
+
+/* =================================================================== */
+/* === ФОРМИ ТА ПІДТВЕРДЖЕННЯ === */
+/* =================================================================== */
+
+.form-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: 20px auto;
+}
+
+.form-container p {
+    margin-bottom: 20px;
+}
+
+.form-container label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-container input[type="text"],
+.form-container input[type="number"],
+.form-container input[type="file"],
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+    border-color: #631ab8;
+    outline: none;
+    box-shadow: 0 0 5px rgba(99, 26, 184, 0.3);
+}
+
+.form-container textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: right;
+}
+
+.confirmation-dialog {
+    text-align: center;
+}
+
+.confirmation-dialog .form-actions {
+    text-align: center;
+}
+
+.confirmation-text {
+    font-size: 1.2em;
+    color: #555;
+    margin: 20px 0 30px;
+}
+
+/* =================================================================== */
+/* === КНОПКИ ТА ПОСИЛАННЯ === */
+/* =================================================================== */
+
+.btn {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    color: white;
+    margin: 0 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: opacity 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.btn-edit, .btn-submit, .btn-secondary {
+    background-color: #631ab8;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Сірий для другорядних дій */
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 25px;
+    font-size: 1.1em;
+}
+
+/* =================================================================== */
+/* === СОРТУВАННЯ === */
+/* =================================================================== */
+
+.sorting-controls {
+    background-color: #ffffff;
+    padding: 15px 20px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Для мобільних */
+}
+
+.sorting-controls span {
+    font-weight: bold;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.sorting-controls .sort-link {
+    text-decoration: none;
+    color: #631ab8;
+    background-color: #f0e6ff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 500;
+    transition: all 0.2s ease-in-out;
+}
+
+.sorting-controls .sort-link:hover {
+    background-color: #e0d1f7;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sorting-controls .sort-link.active {
+    background-color: #631ab8;
+    color: white;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(99, 26, 184, 0.4);
+}
+
+/* =================================================================== */
+/* === ПАГІНАЦІЯ === */
+/* =================================================================== */
+
+.pagination {
+    text-align: center;
+    margin: 40px 0 20px;
+}
+
+.pagination a {
+    padding: 8px 16px;
+    border: 1px solid #ddd;
+    margin: 0 4px;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #eee;
+}
+
+/* =================================================================== */
+/* === FOOTER (Підвал) === */
+/* =================================================================== */
+
+footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 40px;
+    padding: 20px;
+    border-top: 1px solid #ddd;
+}

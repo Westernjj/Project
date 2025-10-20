@@ -1,0 +1,22 @@
+{% extends 'shop/layout.html' %}
+{% block title %}Product Form{% endblock %}
+
+{% block content %}
+    <h2>{% if object %}Edit: {{ object.name }}{% else %}Create Product{% endif %}</h2>
+
+    <div class="form-container">
+        {# ВАЖЛИВО: цей атрибут дозволяє формі завантажувати файли #}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {{ form.as_p }}
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+    <a href="{% url 'products' %}" class="back-link">← Back to list</a>
+
+{% endblock %}
