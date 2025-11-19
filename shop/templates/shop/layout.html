@@ -2,27 +2,105 @@
 <html lang="uk">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}My Shop{% endblock %}</title>
+
   {% load static %}
+
+  <!-- Основні стилі вашого магазину -->
   <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+
+  <!-- Опціонально: стилі для accounts (створіть файл, якщо потрібно) -->
+  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+
+  <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+  <!-- Місце для додаткових стилів у дочірніх шаблонах -->
+  {% block extra_css %}{% endblock %}
 </head>
 <body>
   <header>
-    <h1>My Goods</h1>
-    <nav>
-      <a href="{% url 'products' %}">Products</a> |
-      <a href="{% url 'categories' %}">Categories</a>
-    </nav>
-    <hr>
-  </header>
+    <div class="header-left">
+        <h1><a href="{% url 'products' %}">My Goods</a></h1>
+        <nav>
+            <a href="{% url 'products' %}">Products</a>
+            <a href="{% url 'categories' %}">Categories</a>
+        </nav>
+    </div>
+
+    <div class="header-right">
+        {% if user.is_authenticated %}
+            <div class="profile-dropdown">
+                
+                <button id="profileAvatarBtn" class="profile-avatar-btn">
+                    {% if user.profile.avatar %}
+                        <img src="{{ user.profile.avatar.url }}" alt="Avatar">
+                    {% else %}
+                        <img src="/media/avatars/default.png" alt="Avatar"> {# Шлях до вашого аватара за замовчуванням #}
+                    {% endif %}
+                </button>
+                
+                <div id="profileDropdownMenu" class="dropdown-menu">
+                    <div class="dropdown-header">
+                        Вітаю, <strong>{{ user.username }}</strong>
+                    </div>
+                    <a href="{% url 'accounts:profile' %}">Мій профіль</a>
+                    <a href="{% url 'accounts:profile_edit' %}">Редагувати профіль</a>
+                    <form action="{% url 'accounts:logout' %}" method="post" style="margin:0;">
+                        {% csrf_token %}
+                        <button type="submit" class="dropdown-logout-btn">Вийти з акаунта</button>
+                    </form>
+                </div>
+
+            </div>
+            {% else %}
+            <a href="{% url 'accounts:login' %}" class="btn btn-secondary">Увійти</a>
+            <a href="{% url 'accounts:register' %}" class="btn btn-edit">Реєстрація</a>
+        {% endif %}
+    </div>
+</header>
+
+  <!-- Блок повідомлень Django messages -->
+  {% if messages %}
+    <div class="messages">
+      <ul>
+        {% for message in messages %}
+          <li class="message {{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
 
   <main>
     {% block content %}{% endblock %}
   </main>
 
-  <footer>
-    <hr>
-    <p>&copy; My Shop</p>
-  </footer>
+<footer>
+    <hr>
+    <p>&copy; My Shop</p>
+  </footer>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var avatarBtn = document.getElementById('profileAvatarBtn');
+      var dropdownMenu = document.getElementById('profileDropdownMenu');
+
+      if (avatarBtn && dropdownMenu) {
+          avatarBtn.addEventListener('click', function(event) {
+              event.stopPropagation();
+              dropdownMenu.classList.toggle('show');
+          });
+          window.addEventListener('click', function(event) {
+              if (!avatarBtn.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                  if (dropdownMenu.classList.contains('show')) {
+                      dropdownMenu.classList.remove('show');
+                  }
+              }
+          });
+      }
+  });
+  </script>
+
+    {% block extra_js %}{% endblock %}
+
 </body>
 </html>

@@ -23,6 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'accounts.apps.AccountsConfig',
+    
 ]
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
@@ -69,7 +71,7 @@ DATABASES = {
         'NAME': 'my_django_db',
         'USER': 'django_user',
         'PASSWORD': 'django123',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',
         'OPTIONS': {
             'options': '-c client_encoding=utf8'
@@ -117,7 +119,17 @@ STATIC_URL = 'static/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = 'accounts:login'          # куди редіректити неавторизованих
+LOGIN_REDIRECT_URL = 'accounts:profile'  # куди вести після успішного логіну
+LOGOUT_REDIRECT_URL = 'accounts:login'   # куди вести після логауту
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = "zavlonenoa@gmail.com"
+EMAIL_HOST_PASSWORD = "ybnn sejl arhv rmpw"  
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

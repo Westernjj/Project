@@ -1,0 +1,30 @@
+{% extends 'shop/layout.html' %}
+{% block title %}Мій профіль{% endblock %}
+
+{% block content %}
+{# 1. Додаємо новий клас 'profile-view-container' #}
+<div class="form-container profile-view-container">
+    
+    <div class="profile-avatar">
+        {% if user.profile.avatar %}
+            <img src="{{ user.profile.avatar.url }}" alt="{{ user.username }}'s avatar">
+        {% else %}
+            <img src="/media/avatars/default.png" alt="Default avatar"> 
+        {% endif %}
+    </div>
+
+    {# 2. Переміщуємо 'h2' сюди, ПІСЛЯ аватара #}
+    <h2>{{ user.username }}</h2>
+    
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    
+    {# 3. Тег <hr> тут видалено #}
+    
+    <p><strong>Phone:</strong> {{ user.profile.phone|default:"Не вказано" }}</p>
+    <p><strong>Bio:</strong> {{ user.profile.bio|default:"Не заповнено" }}</p>
+
+    <div class="form-actions">
+        <a href="{% url 'accounts:profile_edit' %}" class="btn btn-edit">Редагувати профіль</a>
+    </div>
+</div>
+{% endblock %}

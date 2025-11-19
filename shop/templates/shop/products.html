@@ -3,7 +3,11 @@
 
 {% block content %}
 <h2>Products</h2>
-<p><a href="{% url 'product_create' %}">Add new product</a></p>
+
+{# --- 1. ЗАЛИШАЄМО ТІЛЬКИ ЗАХИЩЕНЕ ПОСИЛАННЯ --- #}
+{% if user.is_superuser %}
+    <p><a href="{% url 'product_create' %}">Add new product</a></p>
+{% endif %}
 
 {# === БЛОК СОРТУВАННЯ === #}
 <div class="sorting-controls">
@@ -22,10 +26,8 @@
       {# -- БЛОК ДЛЯ ЗОБРАЖЕННЯ -- #}
       <div class="product-image-container">
         {% if product.image %}
-          {# Якщо у товару є картинка, показуємо її #}
           <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-card-image">
         {% else %}
-          {# Інакше показуємо заглушку "No Image" #}
           <div class="product-card-image placeholder-image">No Image</div>
         {% endif %}
       </div>
@@ -36,10 +38,13 @@
       
       <p class="product-price">{{ product.price }} грн</p>
       
-      <div class="product-actions">
-        <a href="{% url 'product_update' slug=product.slug %}" class="btn btn-edit">Edit</a>
-        <a href="{% url 'product_delete' slug=product.slug %}" class="btn btn-delete">Delete</a>
-      </div>
+      {# --- 2. ЗАЛИШАЄМО ТІЛЬКИ ЗАХИЩЕНИЙ БЛОК КНОПОК --- #}
+      {% if user.is_superuser %}
+          <div class="product-actions">
+            <a href="{% url 'product_update' slug=product.slug %}" class="btn btn-edit">Edit</a>
+            <a href="{% url 'product_delete' slug=product.slug %}" class="btn btn-delete">Delete</a>
+          </div>
+      {% endif %}
 
     </div>
   {% empty %}

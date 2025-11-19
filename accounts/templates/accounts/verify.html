@@ -1,0 +1,12 @@
+{% extends "shop/layout.html" %}
+{% block title %}Підтвердження e-mail{% endblock %}
+{% block content %}
+<h2>Підтвердження e-mail</h2>
+<p>Код відправлено на: <strong>{{ email }}</strong></p>
+<form method="post" novalidate>
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Підтвердити</button>
+</form>
+<p>Не отримали лист? <a href="{% url 'accounts:resend' %}">Надіслати код ще раз</a></p>
+{% endblock %}

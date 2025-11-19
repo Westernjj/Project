@@ -3,9 +3,17 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Product, Category
 from .forms import ProductForm, CategoryForm
+from django.contrib.auth.mixins import UserPassesTestMixin
+# 2.  загальний клас для перевірки прав суперкористувача ↓↓↓
+class SuperuserRequiredMixin(UserPassesTestMixin):
+    """
+    Цей міксин перевіряє, чи є поточний користувач суперкористувачем.
+    Якщо ні - повертає помилку 403 (Forbidden).
+    """
+    def test_func(self):
+        return self.request.user.is_superuser
 
-# PRODUCTS
-# shop/views.py
+# === PRODUCTS ===
 
 class ProductListView(ListView):
     model = Product
@@ -14,19 +22,14 @@ class ProductListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        # Отримуємо базовий набір об'єктів
         queryset = super().get_queryset()
-        # Отримуємо параметр сортування з URL-адреси
         sort_by = self.request.GET.get('sort')
 
         if sort_by == 'price_asc':
-            # Сортуємо за ціною: від дешевших до дорожчих
             queryset = queryset.order_by('price')
         elif sort_by == 'price_desc':
-            # Сортуємо за ціною: від дорожчих до дешевших
             queryset = queryset.order_by('-price')
         elif sort_by == 'category':
-            # Сортуємо за назвою категорії
             queryset = queryset.order_by('category__name', 'name')
         
         return queryset
@@ -43,19 +46,21 @@ class ProductDetailView(DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-class ProductCreateView(CreateView):
+# ↓↓↓ 3. Додайте 'SuperuserRequiredMixin' до класів нижче ↓↓↓
+
+class ProductCreateView(SuperuserRequiredMixin, CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'shop/product_form.html'
 
-class ProductUpdateView(UpdateView):
+class ProductUpdateView(SuperuserRequiredMixin, UpdateView):
     model = Product
     form_class = ProductForm
     template_name = 'shop/product_form.html'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Product
     template_name = 'shop/product_confirm_delete.html'
     success_url = reverse_lazy('products')
@@ -63,7 +68,8 @@ class ProductDeleteView(DeleteView):
     slug_url_kwarg = 'slug'
 
 
-# CATEGORIES
+# === CATEGORIES ===
+
 class CategoryListView(ListView):
     model = Category
     template_name = 'shop/categories.html'
@@ -77,19 +83,21 @@ class CategoryDetailView(DetailView):
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-class CategoryCreateView(CreateView):
+# ↓↓↓ 4. Також захищаємо керування категоріями ↓↓↓
+
+class CategoryCreateView(SuperuserRequiredMixin, CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'shop/category_form.html'
 
-class CategoryUpdateView(UpdateView):
+class CategoryUpdateView(SuperuserRequiredMixin, UpdateView):
     model = Category
     form_class = CategoryForm
     template_name = 'shop/category_form.html'
     slug_field = 'slug'
     slug_url_kwarg = 'slug'
 
-class CategoryDeleteView(DeleteView):
+class CategoryDeleteView(SuperuserRequiredMixin, DeleteView):
     model = Category
     template_name = 'shop/category_confirm_delete.html'
     success_url = reverse_lazy('categories')

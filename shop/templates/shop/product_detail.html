@@ -28,11 +28,12 @@
             <div class="product-description">
                 <p>{{ object.description|linebreaks }}</p>
             </div>
-
-            <div class="product-actions-detail">
-                <a href="{% url 'product_update' slug=object.slug %}" class="btn btn-edit">Edit</a>
-                <a href="{% url 'product_delete' slug=object.slug %}" class="btn btn-delete">Delete</a>
-            </div>
+            {% if user.is_superuser %}
+        <div class="product-actions-detail">
+            <a href="{% url 'product_update' slug=object.slug %}" class="btn btn-edit">Edit</a>
+            <a href="{% url 'product_delete' slug=object.slug %}" class="btn btn-delete">Delete</a>
+        </div>
+    {% endif %}
         </div>
     </div>
 

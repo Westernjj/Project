@@ -3,7 +3,7 @@
 /* =================================================================== */
 
 body {
-    background-color: #f4f5f7; /* Трохи світліший фон */
+    background-color: #f4f5f7;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #333;
     margin: 0;
@@ -71,6 +71,97 @@ header nav a:hover {
     border-bottom-color: white;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left h1 {
+    margin-right: 20px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* =================================================================== */
+/* === МЕНЮ ПРОФІЛЮ (АВАТАР) === */
+/* =================================================================== */
+
+.profile-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-avatar-btn {
+    background: none;
+    border: 2px solid #f0e6ff;
+    padding: 0;
+    width: 40px;  /* Правильний, компактний розмір */
+    height: 40px; /* Правильний, компактний розмір */
+    border-radius: 50%; /* Робить аватар круглим */
+    cursor: pointer;
+    overflow: hidden; /* Обрізає все, що вилазить за круг */
+    transition: box-shadow 0.2s;
+}
+
+.profile-avatar-btn:hover {
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.profile-avatar-btn img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Гарантує, що картинка заповнить круг */
+}
+
+.dropdown-menu {
+    display: none; /* Приховано за замовчуванням */
+    position: absolute;
+    top: 55px;
+    right: 0;
+    background-color: white;
+    min-width: 220px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    border-radius: 8px;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.dropdown-menu.show {
+    display: block; /* Цей клас додає JavaScript, щоб показати меню */
+}
+
+.dropdown-header {
+    padding: 12px 16px;
+    color: #555;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #f0f0f0;
+}
+.dropdown-menu a,
+.dropdown-logout-btn {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    background: none;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    font-size: 1em;
+}
+.dropdown-menu a:hover,
+.dropdown-logout-btn:hover {
+    background-color: #f1f1f1;
+    color: #631ab8;
+}
+.dropdown-logout-btn {
+    color: #dc3545; /* Червоний для кнопки "Вийти" */
+}
+
 /* =================================================================== */
 /* === СІТКА ПРОДУКТІВ === */
 /* =================================================================== */
@@ -91,7 +182,7 @@ header nav a:hover {
     display: flex;
     flex-direction: column;
     transition: transform 0.2s, box-shadow 0.2s;
-    overflow: hidden; /* Важливо для зображення */
+    overflow: hidden;
 }
 
 .product-card:hover {
@@ -104,7 +195,7 @@ header nav a:hover {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    flex-grow: 1; /* Дозволяє цьому блоку розтягуватися */
+    flex-grow: 1;
 }
 
 .product-card h3 {
@@ -127,25 +218,22 @@ header nav a:hover {
     margin-top: 15px;
 }
 
-/* Зображення в картці */
-/* Зображення в картці */
 .product-image-container {
-    height: 220px; /* Фіксована висота */
+    height: 220px;
     background-color: #f0f0f0;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden; /* Дуже важливо: обрізає все, що виходить за межі */
+    overflow: hidden;
 }
 
 .product-card-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Ключова властивість: заповнює контейнер, зберігаючи пропорції */
+    object-fit: cover;
     transition: transform 0.3s ease;
 }
 
-/* Ефект при наведенні */
 .product-card:hover .product-card-image {
     transform: scale(1.05);
 }
@@ -154,13 +242,14 @@ header nav a:hover {
     font-size: 1.2em;
     color: #aaa;
 }
+
 /* =================================================================== */
 /* === СТОРІНКА ДЕТАЛЕЙ ТОВАРУ === */
 /* =================================================================== */
 
 .product-detail-layout {
     display: flex;
-    flex-wrap: wrap; /* Для мобільних пристроїв */
+    flex-wrap: wrap;
     gap: 40px;
     background-color: white;
     padding: 30px;
@@ -170,12 +259,11 @@ header nav a:hover {
     margin: 20px auto;
 }
 
-/* Ліва колонка (зображення) */
 .product-detail-image {
     flex: 1;
     max-width: 400px;
-    height: 400px; /* <-- 1. Встановлюємо фіксовану висоту контейнера */
-    background-color: #f0f0f0; /* Фон для випадків, якщо картинка не завантажиться */
+    height: 400px;
+    background-color: #f0f0f0;
     border-radius: 8px;
     display: flex;
     align-items: center;
@@ -184,8 +272,8 @@ header nav a:hover {
 
 .product-detail-image img {
     width: 100%;
-    height: 100%; /* <-- 2. Змушуємо зображення заповнити контейнер */
-    object-fit: cover; /* <-- 3. Найважливіша властивість! Зберігає пропорції, обрізаючи зайве */
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
 }
 
@@ -254,6 +342,7 @@ header nav a:hover {
 }
 
 .form-container input[type="text"],
+.form-container input[type="password"],
 .form-container input[type="number"],
 .form-container input[type="file"],
 .form-container select,
@@ -319,9 +408,11 @@ header nav a:hover {
 .btn:hover {
     opacity: 0.9;
     transform: translateY(-1px);
+    text-decoration: none;
+    color: white;
 }
 
-.btn-edit, .btn-submit, .btn-secondary {
+.btn-edit, .btn-submit {
     background-color: #631ab8;
 }
 
@@ -330,7 +421,12 @@ header nav a:hover {
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Сірий для другорядних дій */
+    background-color: #6c757d; /* Сірий для "Увійти" */
+}
+
+/* Змінюємо кнопки в шапці, щоб вони були компактнішими */
+.header-right .btn {
+    padding: 8px 16px;
 }
 
 .back-link {
@@ -354,7 +450,7 @@ header nav a:hover {
     justify-content: center;
     align-items: center;
     gap: 10px;
-    flex-wrap: wrap; /* Для мобільних */
+    flex-wrap: wrap;
 }
 
 .sorting-controls span {
@@ -384,6 +480,48 @@ header nav a:hover {
     color: white;
     font-weight: bold;
     box-shadow: 0 2px 5px rgba(99, 26, 184, 0.4);
+}
+
+/* =================================================================== */
+/* === БЛОК ПОВІДОМЛЕНЬ (MESSAGES) === */
+/* =================================================================== */
+.messages {
+    list-style: none; /* Прибираємо маркери списку */
+    padding: 0; 
+    margin: 0 auto 20px;
+    max-width: 1200px;
+}
+.messages ul {
+    list-style: none; /* Прибираємо маркери і для вкладеного ul */
+    padding: 0;
+    margin: 0;
+}
+.message {
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.message.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+.message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+.message.warning {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+.message.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
 }
 
 /* =================================================================== */
@@ -417,4 +555,145 @@ footer {
     margin-top: 40px;
     padding: 20px;
     border-top: 1px solid #ddd;
+}
+/* =================================================================== */
+/* === СТИЛІ ДЛЯ ПРОФІЛЮ === */
+/* =================================================================== */
+
+.profile-avatar {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #f0e6ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* =================================================================== */
+/* === АДАПТИВНІСТЬ (MOBILE VIEW) === */
+/* =================================================================== */
+
+@media (max-width: 768px) {
+    main {
+        padding: 10px;
+    }
+    header {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px;
+    }
+    .product-card {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .product-detail-layout {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .product-detail-info h2 {
+        font-size: 2em;
+    }
+    .sorting-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .form-container {
+        padding: 20px;
+    }
+}
+/* Проста стилізація форми без додаткових класів */
+main > form,               /* якщо у тебе форма стоїть одразу в main */
+main .content form,        /* про всяк випадок */
+main .auth-default form {  /* резервний селектор */
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 520px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+
+main form p { margin: 0 0 16px; }
+
+main form label {
+    display: block;
+    margin: 0 0 6px;
+    font-weight: 600;
+    color: #333;
+}
+
+main form input[type="text"],
+main form input[type="email"],
+main form input[type="password"] {
+    width: 100%;
+    height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cfd3d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background: #fafbfc;
+    font-size: 16px;
+    transition: border-color .2s, box-shadow .2s, background-color .2s;
+}
+
+main form input:focus {
+    outline: none;
+    border-color: #631ab8;
+    box-shadow: 0 0 0 4px rgba(99,26,184,.12);
+    background: #fff;
+}
+
+main form .helptext,
+main .helptext { color: #6b7280; font-size: .95rem; display:block; margin-top:6px; }
+
+main ul.errorlist { list-style:none; padding:0; margin: 0 0 10px; }
+main ul.errorlist li {
+    background:#fde8e8; color:#9b1c1c; border:1px solid #f6c7c7;
+    border-radius:8px; padding:10px 12px; font-weight:600;
+}
+
+main form button[type="submit"],
+main form input[type="submit"] {
+    background:#631ab8; color:#fff; border:none;
+    padding: 12px 18px; border-radius: 8px; font-weight:700; cursor:pointer;
+    transition: opacity .2s, transform .2s;
+}
+main form button[type="submit"]:hover,
+main form input[type="submit"]:hover { opacity:.95; transform: translateY(-1px); }
+
+/* заголовок */
+main h2 { max-width: 520px; margin: 0 auto 14px; }
+/* =================================================================== */
+/* === ОНОВЛЕННЯ СТИЛІВ ПРОФІЛЮ === */
+/* =================================================================== */
+
+/* Використовуємо новий клас для центрування */
+.profile-view-container {
+    text-align: center;
+}
+
+/* Прибираємо глобальний стиль h2 (лінію) ТІЛЬКИ на цій сторінці */
+.profile-view-container h2 {
+    border-bottom: none;
+    margin-bottom: 25px;
+}
+
+/* Вирівнюємо текст полів по лівому краю */
+.profile-view-container p {
+    text-align: left;
+    border-top: 1px solid #eee; /* Додаємо легкі лінії-роздільники */
+    padding-top: 15px;
+}
+
+/* Вирівнюємо кнопку по центру */
+.profile-view-container .form-actions {
+    text-align: center;
+    margin-top: 30px;
 }

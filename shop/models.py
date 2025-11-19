@@ -46,7 +46,7 @@ class Product(models.Model):
             base = slugify(self.name)
             slug = base
             counter = 1
-            from django.db.models import Q
+           # from django.db.models import Q
             while Product.objects.filter(slug=slug).exists():
                 slug = f"{base}-{counter}"
                 counter += 1
