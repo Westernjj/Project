@@ -18,7 +18,7 @@ class VerificationCode(models.Model):
     PURPOSE_CHOICES = (('activation', 'activation'),)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='verification_codes')
     code = models.CharField(max_length=6)
-    #purpose = models.CharField(max_length=20, choices=PURPOSE_CHOICES, default='activation')
+    purpose = models.CharField(max_length=20, choices=PURPOSE_CHOICES, default='activation')
     created_at = models.DateTimeField(auto_now_add=True)
     expires_at = models.DateTimeField()
     is_used = models.BooleanField(default=False)

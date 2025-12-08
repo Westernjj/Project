@@ -1,19 +1,29 @@
-
 import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-4%rtn4r2wifdoxm=t)epj9g#wm)osov2jo$0q)ebk*9o*@z0_1'
+# ============================================================
+# НАЛАШТУВАННЯ БЕЗПЕКИ (Зчитуються з .env або environment)
+# ============================================================
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Секретний ключ тепер береться з оточення.
+# Другий аргумент - це дефолтне значення для локальної розробки, якщо .env не знайдено.
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# DEBUG буде True, тільки якщо в .env написано DEBUG=1
+DEBUG = os.getenv('DEBUG') == '1'
+
+# ALLOWED_HOSTS зчитуються рядком і розділяються комою
+# Приклад в .env: ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
+allowed_hosts_env = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost')
+ALLOWED_HOSTS = allowed_hosts_env.split(',')
 
 
-# Application definition
+# ============================================================
+# ДОДАТКИ ТА МІДЛВАР
+# ============================================================
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -24,16 +34,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'shop',
     'accounts.apps.AccountsConfig',
-    
+    'rest_framework',
+    'rest_framework.authtoken', 
+    'api',
 ]
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'shop/static'),
-]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -62,17 +70,18 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# ============================================================
+# БАЗА ДАНИХ (PostgreSQL через Docker)
+# ============================================================
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'my_django_db',
-        'USER': 'django_user',
-        'PASSWORD': 'django123',
-        'HOST': 'db',
-        'PORT': '5432',
+        'NAME': os.getenv('POSTGRES_DB'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'), # У Docker це зазвичай 'db'
+        'PORT': os.getenv('POSTGRES_PORT', '5432'),
         'OPTIONS': {
             'options': '-c client_encoding=utf8'
         },
@@ -80,9 +89,9 @@ DATABASES = {
 }
 
 
-
-# Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+# ============================================================
+# ВАЛІДАЦІЯ ПАРОЛІВ
+# ============================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -100,8 +109,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+# ============================================================
+# ІНТЕРНАЦІОНАЛІЗАЦІЯ
+# ============================================================
 
 LANGUAGE_CODE = 'en-us'
 
@@ -112,24 +122,53 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
+# ============================================================
+# СТАТИКА ТА МЕДІА
+# ============================================================
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'shop/static'),
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
+
+# ============================================================
+# НАЛАШТУВАННЯ АКАУНТІВ
+# ============================================================
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_URL = 'accounts:login'          # куди редіректити неавторизованих
-LOGIN_REDIRECT_URL = 'accounts:profile'  # куди вести після успішного логіну
-LOGOUT_REDIRECT_URL = 'accounts:login'   # куди вести після логауту
+LOGIN_URL = 'accounts:login'
+LOGIN_REDIRECT_URL = 'accounts:profile'
+LOGOUT_REDIRECT_URL = 'accounts:login'
+
+
+# ============================================================
+# НАЛАШТУВАННЯ EMAIL (SMTP)
+# ============================================================
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = "zavlonenoa@gmail.com"
-EMAIL_HOST_PASSWORD = "ybnn sejl arhv rmpw"  
+
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+}

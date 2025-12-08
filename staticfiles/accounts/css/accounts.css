@@ -1,0 +1,186 @@
+/* =================================================================== */
+/* === АВТОРИЗАЦІЯ: ВХІД / РЕЄСТРАЦІЯ === */
+/* =================================================================== */
+
+/* Контейнер сторінки входу/реєстрації */
+.auth-page {
+    max-width: 720px;
+    margin: 30px auto;
+    padding: 0 16px;
+}
+
+/* Картка форми */
+.auth-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border: 1px solid #eee;
+    overflow: hidden;
+}
+
+/* Верхній бар із заголовком */
+.auth-header {
+    background: linear-gradient(135deg, #631ab8, #7f3dd0);
+    color: #fff;
+    padding: 22px 24px;
+}
+
+.auth-title {
+    margin: 0;
+    font-size: 1.9rem;
+    letter-spacing: .3px;
+}
+
+/* Тіло форми */
+.auth-body {
+    padding: 24px;
+}
+
+.auth-body form p { /* стандартна розмітка Django forms.as_p */
+    margin: 0 0 18px;
+}
+
+/* Лейбли та поля */
+.auth-body label {
+    display: block;
+    margin: 0 0 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.auth-input,
+.auth-body input[type="text"],
+.auth-body input[type="email"],
+.auth-body input[type="password"] {
+    width: 100%;
+    height: 44px;
+    padding: 10px 12px;
+    border: 1px solid #cfd3d9;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color .2s, box-shadow .2s, background-color .2s;
+    background-color: #fafbfc;
+}
+
+.auth-body input:focus {
+    outline: none;
+    border-color: #631ab8;
+    box-shadow: 0 0 0 4px rgba(99,26,184,0.12);
+    background-color: #fff;
+}
+
+/* Підказки під полями (Django helptext) */
+.helptext {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.92rem;
+    color: #6b7280;
+}
+
+/* Список підказок для паролю (як у реєстрації) */
+.auth-password-help,
+.helptext ul {
+    margin: 8px 0 0 18px;
+    padding: 0;
+    color: #6b7280;
+}
+.auth-password-help li,
+.helptext ul li {
+    margin: 6px 0;
+}
+
+/* Помилки Django (ul.errorlist) */
+.errorlist {
+    list-style: none;
+    margin: 0 0 8px;
+    padding: 0;
+}
+.errorlist li {
+    background: #fde8e8;
+    color: #9b1c1c;
+    border: 1px solid #f6c7c7;
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-weight: 600;
+}
+
+/* Рядки подвійних полів (пароль / підтвердження) — акуратні відступи */
+.auth-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+@media (min-width: 640px) {
+    .auth-row.auth-two {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Дії під формою */
+.auth-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 6px;
+}
+
+.auth-actions .btn-submit {
+    background: #631ab8;
+    border-radius: 8px;
+    padding: 12px 18px;
+    font-size: 1rem;
+}
+.auth-actions .btn-submit:hover {
+    opacity: .95;
+    transform: translateY(-1px);
+}
+
+/* Посилання “забули пароль?”, “є акаунт?” */
+.auth-meta {
+    margin-top: 18px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 0.98rem;
+}
+.auth-meta a {
+    font-weight: 600;
+}
+
+/* Декоративний роздільник */
+.auth-divider {
+    height: 1px;
+    background: #f0f0f0;
+    margin: 10px 0 0;
+}
+
+/* Невеликі покращення для checkbox / remember me */
+.auth-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 6px 0 0;
+}
+.auth-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Стан disabled у полів/кнопок (на випадок сабміту) */
+.auth-body input[disabled],
+.auth-actions .btn[disabled] {
+    opacity: .7;
+    cursor: not-allowed;
+}
+
+/* Компактніше на мобільних */
+@media (max-width: 480px) {
+    .auth-header { padding: 18px; }
+    .auth-body { padding: 18px; }
+    .auth-title { font-size: 1.6rem; }
+    .auth-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}

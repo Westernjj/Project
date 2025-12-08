@@ -1,16 +1,15 @@
-# Віртуальне середовище
-venv/
 
-# Кеші Python
+venv/
+.env
+
 __pycache__/
 *.pyc
 
-# База SQLite
 *.sqlite3
 
-# Логи
+
 *.log
 
-# Конфіг VSCode / PyCharm (не обов'язково, але бажано)
+db.sqlite3
 .vscode/
 .idea/
