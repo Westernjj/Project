@@ -32,3 +32,17 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+    # === ТИМЧАСОВИЙ КОД: СТВОРЕННЯ АДМІНА ===
+try:
+    from django.contrib.auth import get_user_model
+    User = get_user_model()
+    if not User.objects.filter(username='admin').exists():
+        print("Creating superuser...")
+        User.objects.create_superuser('admin', 'admin@example.com', 'admin12345')
+        print("SUPERUSER CREATED: admin / admin12345")
+    else:
+        print("Superuser already exists")
+except Exception as e:
+    print(f"Error creating superuser: {e}")
+# ========================================
