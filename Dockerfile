@@ -22,6 +22,7 @@ ENV POSTGRES_DB=postgres
 # Збір статики (тепер без помилок з базою даних)
 RUN python manage.py collectstatic --noinput
 
+RUN python manage.py migrate --noinput
 # Міграції застосовуються вже на етапі деплою, а не збірки
 # RUN python manage.py migrate --noinput
 
