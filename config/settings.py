@@ -1,24 +1,19 @@
 import os
 from pathlib import Path
+from datetime import timedelta
+from dotenv import load_dotenv # Імпорт для читання .env
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(BASE_DIR / ".env")
 
-# ============================================================
-# НАЛАШТУВАННЯ БЕЗПЕКИ (Зчитуються з .env або environment)
-# ============================================================
-
-# Секретний ключ тепер береться з оточення.
-# Другий аргумент - це дефолтне значення для локальної розробки, якщо .env не знайдено.
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
-# DEBUG буде True, тільки якщо в .env написано DEBUG=1
-DEBUG = os.getenv('DEBUG') == '1'
+DEBUG = os.getenv("DEBUG", "False") in ("True", "1", "true")
 
-# ALLOWED_HOSTS зчитуються рядком і розділяються комою
-# Приклад в .env: ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
-allowed_hosts_env = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost')
-ALLOWED_HOSTS = allowed_hosts_env.split(',')
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+
 
 
 # ============================================================
@@ -73,19 +68,16 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ============================================================
 # БАЗА ДАНИХ (PostgreSQL через Docker)
 # ============================================================
+LOCAL_DB_URL = f"postgres://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('POSTGRES_DB'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('POSTGRES_HOST'), # У Docker це зазвичай 'db'
-        'PORT': os.getenv('POSTGRES_PORT', '5432'),
-        'OPTIONS': {
-            'options': '-c client_encoding=utf8'
-        },
-    }
+    'default': dj_database_url.config(
+        # 1. Спершу шукаємо 'DATABASE_URL' (це для Railway)
+        # 2. Якщо не знайшли, використовуємо LOCAL_DB_URL (це для вашого Docker)
+        default=os.getenv('DATABASE_URL', LOCAL_DB_URL),
+        conn_max_age=600,
+        ssl_require=False
+    )
 }
 
 
@@ -165,10 +157,19 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        # Старий рядок TokenAuthentication видаляємо або коментуємо
+        # 'rest_framework.authentication.TokenAuthentication',
+        
+        # Додаємо новий:
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+}
+
+# Додаткові налаштування для JWT
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), # Токен доступу живе 60 хв
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),    # Токен оновлення живе 1 день
 }
