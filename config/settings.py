@@ -12,7 +12,8 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 DEBUG = os.getenv("DEBUG", "False") in ("True", "1", "true")
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost,.railway.app").split(",")
+
 
 
 
@@ -72,8 +73,7 @@ LOCAL_DB_URL = f"postgres://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PA
 
 DATABASES = {
     'default': dj_database_url.config(
-        # 1. Спершу шукаємо 'DATABASE_URL' (це для Railway)
-        # 2. Якщо не знайшли, використовуємо LOCAL_DB_URL (це для вашого Docker)
+    
         default=os.getenv('DATABASE_URL', LOCAL_DB_URL),
         conn_max_age=600,
         ssl_require=False
@@ -157,10 +157,7 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # Старий рядок TokenAuthentication видаляємо або коментуємо
-        # 'rest_framework.authentication.TokenAuthentication',
-        
-        # Додаємо новий:
+
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
@@ -168,8 +165,9 @@ REST_FRAMEWORK = {
     ],
 }
 
-# Додаткові налаштування для JWT
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), # Токен доступу живе 60 хв
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),    # Токен оновлення живе 1 день
 }
+
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
