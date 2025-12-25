@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-default-key-for-dev')
 
 DEBUG = os.getenv("DEBUG", "False") in ("True", "1", "true")
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost,.koyeb.app,*").split(",")
 
 
 
@@ -69,16 +69,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # ============================================================
 # БАЗА ДАНИХ (PostgreSQL через Docker)
 # ============================================================
-LOCAL_DB_URL = f"postgres://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_HOST')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+DATABASE_URL = os.getenv('DATABASE_URL')
+
+if DATABASE_URL:
+    # Якщо ми на сервері або підключили Neon
+    DATABASES = {
+        'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600, ssl_require=True)
     }
-}
-
-
+else:
+    # Якщо ми локально і не підключили Neon — використовуємо старий добрий файл
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 # ============================================================
 # ВАЛІДАЦІЯ ПАРОЛІВ
@@ -169,4 +175,4 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),    # Токен оновлення живе 1 день
 }
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.koyeb.app']

@@ -1,0 +1,398 @@
+[
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$kvM924fG1yaOB590shLpDw$HnDYgdmfnynA9A5mVqHLhAF/EL1v0SLVXEc28wGVFjA=",
+      "last_login": "2025-12-08T13:53:58.095Z",
+      "is_superuser": true,
+      "username": "zavlo",
+      "first_name": "",
+      "last_name": "",
+      "email": "zavlonenoa@gmail.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-10-12T13:50:36Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 8,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$dK8y1VXfRUBKYMPq6n553w$l5Xhaa9D8FU+y6yccyiaYT5zt38v4NFZv4RKFtYqaGM=",
+      "last_login": "2025-11-03T14:05:19.125Z",
+      "is_superuser": false,
+      "username": "Western_jj",
+      "first_name": "",
+      "last_name": "",
+      "email": "zavlonenoa@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-11-02T18:51:14.875Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 9,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$JK5DZ2TCALX9LLPf8Zchrf$0qiuU6h9HMdUN9nDWBmraF6HnfgOLO4+4OZ6LW3i880=",
+      "last_login": "2025-11-02T18:55:05.429Z",
+      "is_superuser": false,
+      "username": "artem_prysenko",
+      "first_name": "",
+      "last_name": "",
+      "email": "pupkinartemon@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-11-02T18:54:46.011Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 13,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$biGT8hgFklwnzTvnPT2rL2$/ukboaKMgtc2NYEseX4y736+3We83HBm2Hq8BoolCzc=",
+      "last_login": "2025-11-04T12:30:32.706Z",
+      "is_superuser": false,
+      "username": "artem_prysenko12314",
+      "first_name": "",
+      "last_name": "",
+      "email": "zavlonenoa@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-11-04T12:30:10.335Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 15,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$5WwCEDl9HdmWqcAGzsnQ50$svy15o30a3VG//65/F6kPWnl9nogag9MASH4JGWzFhQ=",
+      "last_login": "2025-12-08T13:53:36.345Z",
+      "is_superuser": false,
+      "username": "prysenko342",
+      "first_name": "",
+      "last_name": "",
+      "email": "zavlonenoa@gmail.com",
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2025-12-08T13:53:24.356Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 16,
+    "fields": {
+      "password": "pbkdf2_sha256$1000000$uQvMbI1aTvwilS2rM3DRhv$UI3SbFC2ZTH0DTFyinyVUXKGaIs4mJMFwnksxNibgQM=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "admin",
+      "first_name": "",
+      "last_name": "",
+      "email": "admin@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2025-12-25T15:17:42.543Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "0qd2ashmlfdk3kxt24jqomc1zi7rl8pj",
+    "fields": {
+      "session_data": ".eJxVjEEOgyAQRe_CuiGOIjBddt8zkGEAsW3QqKya3r2auHH7_nv_K-ZYwlgGV8cg7qBuwlHdsqtrXNyBBIgL88TvPdmH8KIyTJKnsi2jl4ciz3WVzynEz-N0LweZ1rzXmpnQWm8RFbZgGLjTjJG1BTAIlDB46iFpY3VjwDTBMvZt6hR04FH8_sVNPJk:1vGGDv:vfZfdCkoUCbPof_zvso3XF1KVRri9spzxB2AH-nhOOo",
+      "expire_date": "2025-11-18T12:33:19.582Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "22we2ah9c0qam5u0037bzaimdfdfip8h",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSGdPmDGpXu_gQwDSNVAUtqV8d-1SRe6veec-1KOtzW7rcXFzUGdFajT7-ZZHrHsINy53KqWWtZl9npX9EGbvtYQn5fD_TvI3PK3NiJMiB6JRurBCshghKIYBLAEnCh4niAZi6azYLuAQlOfhhEG8KTeH9EDNwQ:1vSbgc:ybOjxLVOUEPfzC_QdWOiSY-SUWUWdqB8ZhVk7DXODUw",
+      "expire_date": "2025-12-22T13:53:58.098Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "4x5ysikxyrropb30jum8ywhb1lmtpsz2",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSG8RsCle7-BMDBI1UBS2pXx322TLnR7zzn3zUJclxrWQXOYMrswyU6_G8b0pLaD_Ijt3nnqbZkn5LvCDzr4rWd6XQ_376DGUbcavS7CR1HOIKAAoYFsrZIJSKFH5bQwSRuDMlEGVcgXpb2zDmkri2GfL94MN-Q:1v7weG:NCD_3VqvSxmGMFBdQzwGlN1ows2I4-2lCTYH25ZWHXU",
+      "expire_date": "2025-10-26T14:02:08.873Z"
+    }
+  },
+  {
+    "model": "sessions.session",
+    "pk": "i9qa9l6r0ao95aphfkztnw8g1nh04vwh",
+    "fields": {
+      "session_data": ".eJxVjMsOwiAQRf-FtSGdPmDGpXu_gQwDSNVAUtqV8d-1SRe6veec-1KOtzW7rcXFzUGdFajT7-ZZHrHsINy53KqWWtZl9npX9EGbvtYQn5fD_TvI3PK3NiJMiB6JRurBCshghKIYBLAEnCh4niAZi6azYLuAQlOfhhEG8KTeH9EDNwQ:1vSbDp:QzUf_mSxeVRdMULFD9WmYDiAROjbt6B21y6T3NuC0aE",
+      "expire_date": "2025-12-22T13:24:13.378Z"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 1,
+    "fields": {
+      "name": "Armour",
+      "description": "Захист, який рятує життя. Від легких шкіряних курток до важких лицарських обладунків — кожен предмет броні створений, щоб витримати найжорстокіші битви. Виготовлені з міцних матеріалів, вони не лише захищають, а й надають власнику впевненості у власних силах. Виберіть свій рівень захисту та станьте непереможним!",
+      "slug": "armour"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 2,
+    "fields": {
+      "name": "Weapons",
+      "description": "Від гострих клинків до могутніх списів — зброя, яка вирішує долю битви. Кожен меч, сокира чи лук мають свою історію та призначення. Виготовлені майстрами, вони стануть продовженням вашої руки у бою. Виберіть свою зброю та готуйтеся до перемоги!",
+      "slug": "weapons"
+    }
+  },
+  {
+    "model": "shop.category",
+    "pk": 3,
+    "fields": {
+      "name": "Potions",
+      "description": "Магія у пляшці. Від лікувальних еліксирів до зілля сили — кожна крапля може змінити хід битви або врятувати життя. Створені алхіміками з рідкісних інгредієнтів, ці зілля стануть вашим секретним ресурсом у найскрутніші моменти. Виберіть те, що вам потрібно, і будьте готовими до будь-яких випробувань!",
+      "slug": "potions"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Iron Plate Armour",
+      "price": "500.00",
+      "description": "Класичний лицарський обладунок з міцних залізних пластин. Забезпечує високий рівень захисту від ударів та проколів. Ідеально підходить для важкоозброєних воїнів, які готові витримати найжорстокіші битви.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/medieval-knight-suit-armor-protection-260nw-2106063014.webp",
+      "slug": "Iron-Plate-Armour"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 2,
+    "fields": {
+      "category": 2,
+      "name": "Excalibur",
+      "price": "2000.00",
+      "description": "Легендарний меч, відомий своєю гостротою та міцністю. Згідно з легендами, він наділений магічною силою, яка допомагає своєму власнику у битвах. Ідеальний вибір для справжніх героїв.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/1-The-Sword-Excalibur-of-King-Arthur.jpg",
+      "slug": "Excalibur"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 3,
+    "fields": {
+      "category": 2,
+      "name": "Dwarven War Axe",
+      "price": "900.00",
+      "description": "Бойова сокира, викувана гномами з найміцнішої сталі. Відома своєю руйнівною силою та надійністю. Підходить для воїнів, які віддають перевагу ближньому бою.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/large_display_Reference.webp",
+      "slug": "Dwarven-War-Axe"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 4,
+    "fields": {
+      "category": 1,
+      "name": "Leather Cuirass",
+      "price": "150.00",
+      "description": "Легка та гнучка шкіряна кираса, яка забезпечує базовий захист без обмеження рухливості. Підходить для розвідників, лучників та тих, хто цінує швидкість і свободу рухів",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/images.jfif",
+      "slug": "Leather-Cuirass"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 5,
+    "fields": {
+      "category": 3,
+      "name": "Healing Potion",
+      "price": "50.00",
+      "description": "Червона рідина, яка миттєво загоює рани та відновлює сили. Незамінна у бою, коли кожна секунда на рахунку. Використовується як лікувальні засоби у найскрутніші моменти.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/638924196108235145.png",
+      "slug": "Healing-Potion"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 6,
+    "fields": {
+      "category": 1,
+      "name": "Dragonbone Shield",
+      "price": "1200.00",
+      "description": "Щит, виготовлений з міцних кісток дракона. Легенди говорять, що він здатний витримати навіть найпотужніші удари. Підходить для воїнів, які потребують додаткового захисту.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/4bf36ed851f04e9a290cb8aa935cdd72.jpg",
+      "slug": "Dragonbone-Shield"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 7,
+    "fields": {
+      "category": 3,
+      "name": "Mana Potion",
+      "price": "70.00",
+      "description": "Щит, виготовлений з міцних кісток дракона. Легенди говорять, що він здатний витримати навіть найпотужніші удари. Підходить для воїнів, які потребують додаткового захисту.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/3394023-blueammo.png",
+      "slug": "Mana-Potion"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 8,
+    "fields": {
+      "category": 2,
+      "name": "Elven Longbow",
+      "price": "800.00",
+      "description": "Довгий лук, виготовлений ельфами з міцного дерева та волокон. Відрізняється високою точністю та дальністю пострілу. Підходить для тих, хто воліє тримати ворога на відстані.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/Elvenbowskinned.webp",
+      "slug": "Elven-Longbow"
+    }
+  },
+  {
+    "model": "shop.product",
+    "pk": 9,
+    "fields": {
+      "category": 3,
+      "name": "Strength Potion",
+      "price": "100.00",
+      "description": "Зелена рідина, яка тимчасово збільшує фізичну силу. Використовується воїнами перед битвою, щоб завдавати більш потужних ударів та витримувати важкі навантаження.",
+      "created_at": "2025-10-12T17:00:00Z",
+      "image": "products/shadowlands-changements-potions-de-soins_4P4FNhi.jpg",
+      "slug": "strength-potion"
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "avatar": "avatars/Знімок_екрана_5997.png",
+      "phone": "077383838383",
+      "bio": "Cave lover number 1!!!!"
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "avatar": "avatars/Знімок_екрана_1146.png",
+      "phone": "",
+      "bio": ""
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "avatar": "avatars/0-02-05-93f3902ed4351f38547a870b62de4d5d6789f85ec1a658471fb62ca7bf7960ed_efc70e5_kbqvrJQ.jpg",
+      "phone": "",
+      "bio": ""
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "avatar": "",
+      "phone": "",
+      "bio": ""
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "avatar": "",
+      "phone": "",
+      "bio": ""
+    }
+  },
+  {
+    "model": "accounts.profile",
+    "pk": 16,
+    "fields": {
+      "user": 16,
+      "avatar": "",
+      "phone": "",
+      "bio": ""
+    }
+  },
+  {
+    "model": "accounts.verificationcode",
+    "pk": 8,
+    "fields": {
+      "user": 8,
+      "code": "604959",
+      "purpose": "activation",
+      "created_at": "2025-11-02T18:51:15.419Z",
+      "expires_at": "2025-11-02T19:06:15.418Z",
+      "is_used": true,
+      "attempts": 0
+    }
+  },
+  {
+    "model": "accounts.verificationcode",
+    "pk": 9,
+    "fields": {
+      "user": 9,
+      "code": "451752",
+      "purpose": "activation",
+      "created_at": "2025-11-02T18:54:46.585Z",
+      "expires_at": "2025-11-02T19:09:46.585Z",
+      "is_used": true,
+      "attempts": 0
+    }
+  },
+  {
+    "model": "accounts.verificationcode",
+    "pk": 13,
+    "fields": {
+      "user": 13,
+      "code": "526694",
+      "purpose": "activation",
+      "created_at": "2025-11-04T12:30:10.923Z",
+      "expires_at": "2025-11-04T12:45:10.923Z",
+      "is_used": true,
+      "attempts": 0
+    }
+  },
+  {
+    "model": "accounts.verificationcode",
+    "pk": 15,
+    "fields": {
+      "user": 15,
+      "code": "160478",
+      "purpose": "activation",
+      "created_at": "2025-12-08T13:53:24.904Z",
+      "expires_at": "2025-12-08T14:08:24.904Z",
+      "is_used": true,
+      "attempts": 0
+    }
+  }
+]
